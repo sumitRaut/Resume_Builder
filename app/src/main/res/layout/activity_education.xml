@@ -1,0 +1,431 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="8dp"
+    tools:context="com.raut.swapnil.resume_builder.Education">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Enter School Name"
+                android:textColor="@android:color/black"
+                android:textSize="20sp" />
+
+            <EditText
+                android:id="@+id/college_10th"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Enter 10th school name"
+                android:maxLines="1"
+                android:singleLine="true"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Degree"
+                    android:textColor="@android:color/black"
+                    android:textSize="20sp" />
+
+                <EditText
+                    android:id="@+id/degree"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:hint="Enter Degree"
+                    android:maxLines="1"
+                    android:singleLine="true"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Branch"
+                    android:textColor="@android:color/black"
+                    android:textSize="20sp" />
+
+                <EditText
+                    android:id="@+id/branch"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:hint="Enter Branch"
+                    android:maxLines="1" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Marks/Grade"
+                    android:textColor="@android:color/black"
+                    android:textSize="20sp" />
+
+                <EditText
+                    android:id="@+id/marks"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:hint="Enter Marks"
+                    android:maxLines="1"
+                    android:singleLine="true"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Passing Year"
+                    android:textColor="@android:color/black"
+                    android:textSize="20sp" />
+
+                <EditText
+                    android:id="@+id/year"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:hint="Enter Year"
+                    android:inputType="number"
+                    android:maxLines="1"
+                    android:singleLine="true"/>
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/add_education_1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/ic_add_circle_black_24dp"
+                android:visibility="gone" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="24dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="4"
+                    android:text="Enter College Name"
+                    android:textColor="@android:color/black"
+                    android:textSize="20sp" />
+
+                <ImageView
+                    android:id="@+id/clear_education_1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:src="@drawable/ic_clear_black_24dp"
+                    android:visibility="gone" />
+
+
+            </LinearLayout>
+
+            <EditText
+                android:id="@+id/college_12th"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Enter 12th/Diploma College name"
+                android:maxLines="1"
+                android:singleLine="true"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Degree"
+                    android:textColor="@android:color/black"
+                    android:textSize="20sp" />
+
+                <EditText
+                    android:id="@+id/degree_2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:hint="Enter Degree"
+                    android:maxLines="1"
+                    android:singleLine="true"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Branch"
+                    android:textColor="@android:color/black"
+                    android:textSize="20sp" />
+
+                <EditText
+                    android:id="@+id/branch_2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:hint="Enter Branch"
+                    android:maxLines="1"
+                    android:singleLine="true"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Marks/Grade"
+                    android:textColor="@android:color/black"
+                    android:textSize="20sp" />
+
+                <EditText
+                    android:id="@+id/marks_2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:hint="Enter Marks"
+                    android:maxLines="1"
+                    android:singleLine="true"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Passing Year"
+                    android:textColor="@android:color/black"
+                    android:textSize="20sp" />
+
+                <EditText
+                    android:id="@+id/year_2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:hint="Enter Year"
+                    android:inputType="number"
+                    android:maxLines="1"
+                    android:singleLine="true"/>
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/add_education_2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/ic_add_circle_black_24dp"
+                android:visibility="gone" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="24dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="4"
+                    android:text="Enter College Name"
+                    android:textColor="@android:color/black"
+                    android:textSize="20sp" />
+
+                <ImageView
+                    android:id="@+id/clear_education_2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:src="@drawable/ic_clear_black_24dp"
+                    android:visibility="gone" />
+
+
+            </LinearLayout>
+
+            <EditText
+                android:id="@+id/college_graduation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Enter College"
+                android:maxLines="1"
+                android:singleLine="true"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Degree"
+                    android:textColor="@android:color/black"
+                    android:textSize="20sp" />
+
+                <EditText
+                    android:id="@+id/degree_3"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:hint="Enter Degree"
+                    android:maxLines="1"
+                    android:singleLine="true"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Branch"
+                    android:textColor="@android:color/black"
+                    android:textSize="20sp" />
+
+                <EditText
+                    android:id="@+id/branch_3"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:hint="Enter Branch"
+                    android:maxLines="1"
+                    android:singleLine="true"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Marks/Grade"
+                    android:textColor="@android:color/black"
+                    android:textSize="20sp" />
+
+                <EditText
+                    android:id="@+id/marks_3"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:hint="Enter Marks"
+                    android:maxLines="1"
+                    android:singleLine="true"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Passing Year"
+                    android:textColor="@android:color/black"
+                    android:textSize="20sp" />
+
+                <EditText
+                    android:id="@+id/year_3"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:hint="Enter Year"
+                    android:inputType="number"
+                    android:maxLines="1"
+                    android:singleLine="true">
+
+                </EditText>
+
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/add_education_3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/ic_add_circle_black_24dp"
+                android:visibility="gone" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/next_education"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="24dp"
+            android:text="SAVE"
+            android:visibility="visible" />
+
+    </LinearLayout>
+</ScrollView>

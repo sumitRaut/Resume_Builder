@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:Resume_Builder="http://schemas.android.com/apk/res-auto"
+    xmlns:android1="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/action_edit"
+        android:orderInCategory="100"
+        Resume_Builder:showAsAction="always"
+        android:icon="@drawable/ic_mode_edit_black_24dp"
+        android:title="Refresh"/>
+</menu>
