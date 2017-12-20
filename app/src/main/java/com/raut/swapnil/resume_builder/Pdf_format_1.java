@@ -1,7 +1,9 @@
 package com.raut.swapnil.resume_builder;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Environment;
 import android.widget.EditText;
 
@@ -17,9 +19,9 @@ import com.itextpdf.text.pdf.ColumnText;
 import com.itextpdf.text.pdf.PdfContentByte;
 import com.itextpdf.text.pdf.PdfWriter;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import static android.content.Context.MODE_PRIVATE;
@@ -57,6 +59,8 @@ public class Pdf_format_1 {
     private static Font smallBold = new Font(Font.FontFamily.TIMES_ROMAN, 12, Font.BOLD);
     private static Font nameFont = new Font(Font.FontFamily.TIMES_ROMAN, 60, Font.BOLD, BaseColor.BLUE);
     //Context context;
+    ArrayList<Pdf_List> file_ArrayList ;
+
     ArrayList<String> personalArray;
     ArrayList<ArrayList<String>> education_Array;
     String nameValue;
@@ -113,7 +117,7 @@ public class Pdf_format_1 {
         String award_pref_3 = pref.getString("award_3", "");
     }
 
-    public void createPdf(Context context) throws FileNotFoundException, DocumentException {
+    public void createPdf(Context context, String pdfName) throws FileNotFoundException, DocumentException {
         System.out.println("Doing createpdf");
 
         SharedPreferences pref = context.getSharedPreferences("MyPref", MODE_PRIVATE);
@@ -162,10 +166,21 @@ public class Pdf_format_1 {
 
             Document document = new Document(PageSize.A2);
             String filename;
+            String path;
+            String newPath;
+            //filename = Environment.getExternalStorageDirectory() + "/result_" + new SimpleDateFormat("hh_mm_ss").format(new java.util.Date()).toString() + ".pdf";
+            //PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(filename));
 
-            filename = Environment.getExternalStorageDirectory() + "/result_" + new SimpleDateFormat("hh_mm_ss").format(new java.util.Date()).toString() + ".pdf";
-            PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(filename));
+            path = Environment.getExternalStorageDirectory().getAbsolutePath() + "/Resume Builder";
+            File dir = new File(path);
+            if (!dir.exists())
+                dir.mkdir();
 
+            //File file = new File(dir, "/result_" + new SimpleDateFormat("hh_mm_ss").format(new java.util.Date()).toString() + ".pdf");
+            //File file = new File(dir, "/" +pdfName+ ".pdf");
+            File file = new File(dir, pdfName + ".pdf");
+            PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(file));
+            newPath = dir+"/"+pdfName+".pdf";
             document.open();
             educational_info(writer, pref);
             skills_info(writer, pref);
@@ -243,17 +258,89 @@ public class Pdf_format_1 {
             canvas.stroke();
             System.out.println("Page Size:" + document.getPageSize());
             document.close();
+
+            //viewPdf(context,file);
+            viewPdf(context,newPath);
         } catch (Exception e) {
             System.out.println("Error!" + e.getMessage());
         }
 
     }
 
+    public void viewPdf(Context context,String pdfName) {
+
+
+        String path = Environment.getExternalStorageDirectory().getAbsolutePath() + "/Resume Builder";
+        File dir = new File(path);
+        File file = new File(dir,pdfName+".pdf");
+
+        if(file.exists()){
+            Uri uri_path = Uri.fromFile(file);
+            Intent intent = new Intent(Intent.ACTION_VIEW);
+            intent.setDataAndType(uri_path,"application/pdf");
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            //intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
+            context.startActivity(intent);
+        }
+        else
+            System.out.println("File does not exists");
+    }
+    public ArrayList<Pdf_List> pdf_List() {
+
+        String path = Environment.getExternalStorageDirectory().getAbsolutePath() + "/Resume Builder";
+        if(path!=null)
+        {
+            File dir = new File(path);
+            File[] fileList = dir.listFiles();
+            System.out.println("Length::::::::::::::::::::::::::::::::"+fileList.length);
+            file_ArrayList = new ArrayList<Pdf_List>();
+            file_ArrayList.clear();
+
+            if(fileList!=null && fileList.length>0)
+            {
+                for (File file:fileList)
+                {
+                    //System.out.println(file.getAbsoluteFile());
+                    //addtoList(file);
+
+                    String pdfPath = file.getPath().toString();
+                    String pdfName = file.getName();
+
+                    Pdf_List obj = new Pdf_List(pdfName,pdfPath);
+                    file_ArrayList.add(obj);
+                }
+                printList(file_ArrayList);
+            }
+        }
+        return file_ArrayList;
+    }
+
+    public void printList(ArrayList<Pdf_List> file_arrayList) {
+        /*for(Pdf_List element:file_arrayList)
+            System.out.println("************************************************"+element);*/
+
+        for (int i=0; i<file_arrayList.size();i++)
+        {
+            System.out.println("NAME= "+file_arrayList.get(i).getPdfName()+" PATH = "+file_arrayList.get(i).getPdfPath());
+        }
+        //return file_arrayList;
+    }
+
+    //private void addtoList(File file)
+    private void addtoList() {
+        file_ArrayList = new ArrayList<>();
+        //file_ArrayList.add("");
+        //file_ArrayList.add
+
+    }
+
+
     private void curricular_info(PdfWriter writer, SharedPreferences pref) {
-        String activity_pref_1 = pref.getString("activity_1","");
-        String activity_pref_2 = pref.getString("activity_2","");
-        System.out.println("Activity 1:"+activity_pref_1);
-        System.out.println("Activity 2:"+activity_pref_2);
+        String activity_pref_1 = pref.getString("activity_1", "");
+        String activity_pref_2 = pref.getString("activity_2", "");
+        System.out.println("Activity 1:" + activity_pref_1);
+        System.out.println("Activity 2:" + activity_pref_2);
         try {
             PdfContentByte canvas = writer.getDirectContent();
             Rectangle rect = new Rectangle(420, 175, 1175, 250);//x,y,width,height // 1191, 1684
@@ -405,10 +492,10 @@ public class Pdf_format_1 {
                 p.setAlignment(Element.ALIGN_JUSTIFIED);
                 ct.addElement(p);
                 p = new Paragraph(year_pref_3 + " years", catFont);
+
                 p.setAlignment(Element.ALIGN_JUSTIFIED);
                 ct.addElement(p);
                 ct.go();
-
                 canvas.stroke();
             } catch (Exception e) {
                 System.out.println("Error!" + e.getMessage());
@@ -549,3 +636,4 @@ public class Pdf_format_1 {
 
     }
 }
+

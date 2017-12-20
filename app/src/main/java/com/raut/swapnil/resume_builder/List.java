@@ -1,26 +1,33 @@
 package com.raut.swapnil.resume_builder;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Environment;
 import android.print.PrintAttributes;
 import android.print.PrintDocumentAdapter;
 import android.print.PrintJob;
 import android.print.PrintManager;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 
 import com.itextpdf.text.DocumentException;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.concurrent.ArrayBlockingQueue;
 
@@ -37,21 +44,11 @@ public class List extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
-        ActionBar bar = getSupportActionBar();
-        bar.setTitle("Resume Builder");
+        //ActionBar bar = getSupportActionBar();
+        //bar.setTitle("Resume Builder");
         pdf = new Pdf_format_1();
 
         list = (ListView) findViewById(R.id.list);
-
-//        data = new ArrayList<>();
-//        data.add("Personal Details");
-//        data.add("Education Details");
-//        data.add("Professional Experience");
-//        data.add("Skills and Achievements");
-//        adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, data);
-
-
-//        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, mobileArray);
 
         adapter = new ArrayAdapter<String>(this, R.layout.list_items, mobileArray);
         list.setAdapter(adapter);
@@ -98,19 +95,67 @@ public class List extends AppCompatActivity {
         btnPrint.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                doWebViewPrint();
-                try{
-                    System.out.println("Calling createpdf");
-                    pdf.createPdf(getApplication());
+                //doWebViewPrint();
+                AlertDialog.Builder builder = new AlertDialog.Builder(List.this);
+                View file  = getLayoutInflater().inflate(R.layout.dialog,null);
+                builder.setView(file);
+                final EditText nameBox = (EditText)file.findViewById(R.id.pdfName);
+                //String pdfName = nameBox.getText().toString();
+                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        String pdfName = nameBox.getText().toString();
+                        if(pdfName.isEmpty())
+                            System.out.println("pdfName################### is empty");
+                        System.out.println("pdfName###############: "+pdfName );
+                        try{
+                            pdf.createPdf(getApplicationContext(),pdfName);
+                            pdf.viewPdf(getApplicationContext(),pdfName);
+                        }catch (FileNotFoundException e) {
+                            e.printStackTrace();
+                        } catch (DocumentException e) {
+                            e.printStackTrace();
+                        }
+
+                        dialogInterface.dismiss();
+                    }
+                });
+                AlertDialog abd = builder.create();
+                abd.show();
+
+/*                try{
+                    pdf.createPdf(getApplicationContext(),pdfName);
                 }catch (FileNotFoundException e) {
                     e.printStackTrace();
                 } catch (DocumentException e) {
                     e.printStackTrace();
-                }
+                }*/
 
             }
         });
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        menu.add(1,1,1,"Display list");
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case 1:Intent intent = new Intent(List.this, Display_PDF_List.class);
+                startActivity(intent);
+
+                pdf.pdf_List();
+
+                break;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
 
     public void getSharedPreference()
     {

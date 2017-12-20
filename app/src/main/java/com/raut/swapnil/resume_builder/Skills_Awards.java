@@ -2,9 +2,12 @@ package com.raut.swapnil.resume_builder;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -27,13 +30,22 @@ public class Skills_Awards extends AppCompatActivity implements View.OnClickList
     static int is_saveClicked;
     SharedPreferences pref;
 
+    Toolbar toolbar;
+    CollapsingToolbarLayout collapsetoolbar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_skills__awards);
+        setContentView(R.layout.material_skills);
 
-        ActionBar bar = getSupportActionBar();
-        bar.setTitle("Skills/Achievements");
+        toolbar = (Toolbar)findViewById(R.id.toolbar_skills);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        collapsetoolbar = (CollapsingToolbarLayout)findViewById(R.id.collapse_skills);
+        collapsetoolbar.setTitle("Skills And Achievements");
+        collapsetoolbar.setExpandedTitleColor(Color.parseColor("#ffffff"));
+        collapsetoolbar.setCollapsedTitleTextColor(Color.parseColor("#ffffff"));
 
         data_personl = new Database_Personal(this, "library", null, 100);
         skill_1 = (EditText) findViewById(R.id.skill_1);

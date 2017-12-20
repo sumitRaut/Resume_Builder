@@ -12,7 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity" />
+        <activity
+            android:name=".MainActivity" />
         <activity
             android:name=".Education"
             android:parentActivityName=".List" />
@@ -25,7 +26,8 @@
         <activity
             android:name=".Skills_Awards"
             android:parentActivityName=".List" />
-        <activity android:name=".List">
+        <activity android:name=".List"
+            android:theme="@style/StartPage">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -33,7 +35,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".Project" />
-        <activity android:name=".Curricular_Activities"></activity>
+        <activity android:name=".Curricular_Activities" />
+        <activity android:name=".Display_PDF_List"></activity>
     </application>
 
 </manifest>

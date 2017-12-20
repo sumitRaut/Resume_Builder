@@ -2,9 +2,11 @@ package com.raut.swapnil.resume_builder;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v7.app.ActionBar;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -19,16 +21,22 @@ public class Education extends AppCompatActivity implements View.OnClickListener
     EditText college_name_3, degree_3, branch_3, marks_3, year_3;
     SharedPreferences pref;
     static int education_save;
-
+    Toolbar toolbar;
+    CollapsingToolbarLayout collapseToolbar;
     Button next;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_education);
+        setContentView(R.layout.material_education);
 
-        ActionBar bar = getSupportActionBar();
-        bar.setTitle("Education");
+        toolbar = (Toolbar)findViewById(R.id.toolbar_education);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        collapseToolbar = (CollapsingToolbarLayout)findViewById(R.id.collapse_education);
+        collapseToolbar.setTitle("Education");
+        collapseToolbar.setCollapsedTitleTextColor(Color.parseColor("#ffffff"));
+        collapseToolbar.setExpandedTitleColor(Color.parseColor("#ffffff"));
 
         pref = getSharedPreferences("MyPref", MODE_PRIVATE);
 

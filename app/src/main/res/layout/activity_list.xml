@@ -15,7 +15,8 @@
         android:id="@+id/btnPprint"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="12dp"
         android:text="Print Resume"
-        android:layout_gravity="center_horizontal" />
+        android:theme="@style/ButtonStyle" />
 
 </LinearLayout>

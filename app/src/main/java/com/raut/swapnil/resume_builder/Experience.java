@@ -2,9 +2,12 @@ package com.raut.swapnil.resume_builder;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -18,16 +21,21 @@ public class Experience extends AppCompatActivity implements View.OnClickListene
     EditText  year_1,year_2,year_3;
     Button save;
     SharedPreferences pref;
-
+    Toolbar toolbar;
+    CollapsingToolbarLayout collapsetoolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_experience);
+        setContentView(R.layout.material_experience);
 
+        toolbar = (Toolbar)findViewById(R.id.toolbar_experience);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        ActionBar bar = getSupportActionBar();
-        bar.setTitle("Professional Experience");
-
+        collapsetoolbar = (CollapsingToolbarLayout)findViewById(R.id.collapse_experience);
+        collapsetoolbar.setTitle("Experience");
+        collapsetoolbar.setCollapsedTitleTextColor(Color.parseColor("#ffffff"));
+        collapsetoolbar.setExpandedTitleColor(Color.parseColor("#ffffff"));
         company_1 = (EditText) findViewById(R.id.company_name_1);
         company_2 = (EditText) findViewById(R.id.company_name_2);
         company_3 = (EditText) findViewById(R.id.company_name_3);

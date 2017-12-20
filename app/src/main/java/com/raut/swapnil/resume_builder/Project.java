@@ -1,9 +1,14 @@
 package com.raut.swapnil.resume_builder;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -13,13 +18,23 @@ public class Project extends AppCompatActivity {
     EditText project_1, project_2, project_3, description_1, description_2, description_3;
     Button save_btn;
     SharedPreferences pref;
+    Toolbar toolbar;
+    CollapsingToolbarLayout collapsetoolbar;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_project);
+        setContentView(R.layout.material_project);
 
-        ActionBar bar = getSupportActionBar();
-        bar.setTitle("Project");
+        toolbar = (Toolbar)findViewById(R.id.toolbar_project);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        collapsetoolbar = (CollapsingToolbarLayout)findViewById(R.id.collapse_project);
+        collapsetoolbar.setTitle("Project");
+        collapsetoolbar.setExpandedTitleColor(Color.parseColor("#ffffff"));
+        collapsetoolbar.setCollapsedTitleTextColor(Color.parseColor("#ffffff"));
 
         pref = getSharedPreferences("MyPref", MODE_PRIVATE);
 
@@ -39,6 +54,29 @@ public class Project extends AppCompatActivity {
         });
         get_shared_pref();
     }
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case android.R.id.home:
+                onBackPressed();
+                break;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(getApplicationContext(), List.class);
+        startActivity(intent);
+        finish();
+        super.onBackPressed();
+    }
+
+
+
 
     private void set_shared_pref() {
         SharedPreferences.Editor editor = pref.edit();

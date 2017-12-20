@@ -1,11 +1,16 @@
 package com.raut.swapnil.resume_builder;
 
 import android.app.DatePickerDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -26,18 +31,27 @@ public class Personal_Details extends AppCompatActivity implements View.OnClickL
     String nameValue, mobileValue, emailValue, dobValue, ageValue, addressValue, languageValue, hobbiesValue;
     SharedPreferences pref;
     LinearLayout linearLayout;
+    CollapsingToolbarLayout collapsingToolbar;
+    Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_personal__details);
-        ActionBar bar = getSupportActionBar();
+        setContentView(R.layout.material_personal);
+        /*ActionBar bar = getSupportActionBar();
         bar.setTitle("Personal Details");
 
-        bar.setDisplayShowHomeEnabled(true);
+        bar.setDisplayShowHomeEnabled(true);*/
         //bar.setLogo(R.drawable.ic_account_circle_black_24dp);
         //bar.setDisplayUseLogoEnabled(true);
+        toolbar = (Toolbar)findViewById(R.id.toolbar_personal);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        collapsingToolbar = (CollapsingToolbarLayout)findViewById(R.id.collapse_tool_personal);
+        collapsingToolbar.setTitle("Personal Details");
+        collapsingToolbar.setCollapsedTitleTextColor(Color.parseColor("#ffffff"));
+        collapsingToolbar.setExpandedTitleColor(Color.parseColor("#ffffff"));
 
         pref = getSharedPreferences("MyPref", MODE_PRIVATE);
 
@@ -61,7 +75,6 @@ public class Personal_Details extends AppCompatActivity implements View.OnClickL
            // enable_false();
         }
         get_shared_pref();
-
     }
 
     @Override
